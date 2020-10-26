@@ -1,0 +1,31 @@
+{
+  "name": "ecommerce-platform",
+  "version": "1.0.0",
+  "description": "A js mock ecommerce platform.",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node ./src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fiyin-Anne/ecommerce-platform.git"
+  },
+  "author": "Fiyin Akinsiku",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fiyin-Anne/ecommerce-platform/issues"
+  },
+  "homepage": "https://github.com/Fiyin-Anne/ecommerce-platform#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.10"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "nodemon": "^2.0.6"
+  }
+}
