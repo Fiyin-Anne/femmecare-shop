@@ -4,6 +4,10 @@
   "description": "A js mock ecommerce platform.",
   "main": "app.js",
   "scripts": {
+    "clean": "npm rm -rf build && npm run build-babel",
+    "build-babel": "babel -d ./build ./src -s",
+    "build": "npm run clean && npm run build-babel",
+    "start-prod": "npm run build && node ./build/app.js",
     "start": "nodemon --exec babel-node ./src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
