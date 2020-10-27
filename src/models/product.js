@@ -3,25 +3,22 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const productSchema = new Schema({
-    _id: mongoose.Schema.Types.ObjectId,
     name: {
         type: String, 
         required: true
     },
-    author:  {
-        type: String,
-        default: "Unknown"
+    price:  {
+        type: Number,
+        required: true
     },
-    category: {
-        type: String, 
-        required: true},
-    shelf:  {
-        type: Number
+    categoryId: {
+        type: [Number], 
+        required: true
     },
-    numAvailable:  {
-        type: Number
+    description:  {
+        type: String
     }
     
 });
 
-module.exports = mongoose.model('Book', BookSchema);
+module.exports = mongoose.model('Product', productSchema);
