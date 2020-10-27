@@ -26,4 +26,19 @@ export default class ProductServices {
       }
     }
 
+    static async deleteProductById(id) {
+      try {
+        return await Product.findByIdAndDelete(id)
+      } catch (err) {
+        throw err;
+      }
+    }
+    
+    static async updateProductById(id, body, options) {
+      try {
+        return await Product.findByIdAndUpdate(id, body, options )
+      } catch (err) {
+        throw err;
+      }
+    }
 }

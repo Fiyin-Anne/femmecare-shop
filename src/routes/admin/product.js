@@ -1,14 +1,16 @@
 import express from "express";
 import ProductController from "../../controllers/product";
+import Authentication from "../../middlewares/authentication";
 
-const { addProduct, getProducts, getProductById } = ProductController;
+const { verifyToken } = Authentication;
+const { addProduct, getProducts, getProduct, deleteProduct, updateProduct } = ProductController;
 const router = express.Router();
 
 router.get("/products", getProducts);
-router.get("/product/:id", getProductById);
-router.post("/product", addProduct);
-router.put("/product/:id");
-router.delete("/product/:id");
+router.get("/product/:id", getProduct);
+router.post("/product", verifyToken, addProduct);
+router.put("/product/:id", verifyToken, updateProduct);
+router.delete("/product/:id", verifyToken, deleteProduct);
 
 
 

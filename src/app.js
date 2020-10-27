@@ -3,6 +3,7 @@ import "./database/index";
 import bodyParser from "body-parser";
 import cors from "cors";
 import userRoutes from "./routes/user/user";
+import cartRoutes from "./routes/user/cart";
 import adminProductRoutes from "./routes/admin/product";
 import adminCategoryRoutes from "./routes/admin/category";
 
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 app.use("/api/user/", userRoutes);
 app.use("/api/admin/", adminProductRoutes);
 app.use("/api/admin/", adminCategoryRoutes);
+app.use("/api/user/cart", cartRoutes);
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}.`)
