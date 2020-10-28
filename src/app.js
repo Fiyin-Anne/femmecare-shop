@@ -4,8 +4,6 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import userRoutes from "./routes/user/user";
 import cartRoutes from "./routes/user/cart";
-import adminProductRoutes from "./routes/admin/product";
-import adminCategoryRoutes from "./routes/admin/category";
 import adminSigninRoutes from "./routes/admin/adminUser";
 
 const app = express();
@@ -21,8 +19,6 @@ app.get("/", (req, res) => {
     res.status(200).send({message: "Welcome to your Femme Care shop!"});
 })
 app.use("/api/user/", userRoutes);
-app.use("/api/admin/", adminProductRoutes);
-app.use("/api/admin/", adminCategoryRoutes);
 app.use("/api/admin/", adminSigninRoutes);
 app.use("/api/user/cart", cartRoutes);
 
