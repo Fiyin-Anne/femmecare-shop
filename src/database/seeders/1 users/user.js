@@ -1,6 +1,5 @@
 module.exports = [
     {
-        
         "username": "Fiyin",
         "email": "fiyin@gmail.com",
         "password": "$2a$08$2mv4aN3QQSKCvSgHoHOGZeI.IoOKKLa6MesBdnwkp24GAmqjVSMYG",

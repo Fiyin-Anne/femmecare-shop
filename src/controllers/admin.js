@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import AdminServices from "../services/admin";
 import UserServices from "../services/user";
 import jwtHelper from "../utilities/jwt"
-import {registerValidation, loginValidation} from "../validations/user";
+import {loginValidation} from "../validations/user";
 
 export default class AdminController {
     static async adminLogin (req, res) {

@@ -1,7 +1,8 @@
 const { Seeder } = require('mongo-seeding');
+require('dotenv/config')
 
 const config = {
-    database: "mongodb+srv://fiyinanne:fiyin@ecommerce-api.a9cbg.mongodb.net/test",
+    database: process.env.MONGO_DB,
     dropDatabase: true,
 };
 
@@ -12,8 +13,8 @@ const collections = seeder.readCollectionsFromPath(path.resolve("./src/database/
 
 try {
      seeder.import(collections);
-     console.log("Successful!")
   } catch (err) {
     console.log(error)
   }
-  // Do whatever you want after successful import
+
+console.log("Successful!")

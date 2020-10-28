@@ -30,7 +30,6 @@ export default class ProductController {
                 currentPage: page 
             })
         } catch (error) {
-            console.log(error)
             res.status(500).json({ status: 500, error: "Server Error" });
         }
     }
@@ -84,7 +83,6 @@ export default class ProductController {
             })
             res.status(200).json({ status: 200, message: `Successfully updated ${product.name}.`, product: product })
         } catch (error) {
-            console.log(error)
             res.status(500).json({ status: 500, error: "Server Error" });
         }
     }

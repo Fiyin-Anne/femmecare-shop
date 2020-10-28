@@ -37,7 +37,6 @@ export default class CategoryController {
 
     static async getCategory(req, res) {
         try {
-            console.log(req.params)
             const { id } = req.params;
             if (!ObjectId.isValid(id)) return res.status(404).json({
                 status: 404,

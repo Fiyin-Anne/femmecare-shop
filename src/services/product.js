@@ -1,4 +1,3 @@
-// add product, check if it already exists in db
 import Product from "../models/product";
 
 export default class ProductServices {
