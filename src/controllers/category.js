@@ -1,5 +1,6 @@
 import Admin from "../services/admin";
 import CategoryServices from "../services/category";
+var ObjectId = require('mongoose').Types.ObjectId;
 
 export default class CategoryController {
     static async addCategory(req, res) {
@@ -36,10 +37,11 @@ export default class CategoryController {
 
     static async getCategory(req, res) {
         try {
+            console.log(req.params)
             const { id } = req.params;
-            if (!id) return res.status(404).json({
+            if (!ObjectId.isValid(id)) return res.status(404).json({
                 status: 404,
-                error: "Please provide an id",
+                error: "Please provide a valid id",
               });
             const category = await CategoryServices.getCategory(id);
             if(!category) return res.status(400).json({ status: 400, message: `This category doesn't exist`, })
@@ -52,9 +54,9 @@ export default class CategoryController {
     static async deleteCategory(req, res) {
         try {
             const { id } = req.params;
-            if (!id) return res.status(404).json({
+            if (!ObjectId.isValid(id)) return res.status(404).json({
                 status: 404,
-                error: "Please provide an id",
+                error: "Please provide a valid id",
               });
             const category = await CategoryServices.deleteCategory(id);
             if(!category) return res.status(400).json({
@@ -70,9 +72,9 @@ export default class CategoryController {
     static async updateCategory(req, res) {
         try {
             const { id } = req.params;
-            if (!id) return res.status(404).json({
+            if (!ObjectId.isValid(id)) return res.status(404).json({
                   status: 404,
-                  error: "Please provide an id",
+                  error: "Please provide a valid id",
                 });
             const body = req.body;
             const options = {"new": true}
