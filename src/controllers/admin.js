@@ -22,6 +22,7 @@ export default class AdminController {
             const token = await jwtHelper.generateToken({ user });
             return res.status(200).json({ status: 200, message: `Hello ${user.username}, welcome!`, token: token});
             } catch (error) {
+                console.log(error)
                 res.status(500).json({ status: 500, error: "Server Error" });
             }
     }
