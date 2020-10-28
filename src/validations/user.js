@@ -32,7 +32,8 @@ const registerValidation = user => {
     verify_password: Joi.string().required()
        .valid(Joi.ref('password'))
        .messages({
-           'any.only': 'Password must match.'
+         "any.required": "Verify password is required.",
+         "any.only": 'Password must match.'
         })
   }).options({ abortEarly: false });
   return schema.validate(user);

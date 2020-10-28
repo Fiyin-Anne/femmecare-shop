@@ -9,6 +9,7 @@
     "build": "npm run clean && npm run build-babel",
     "start-prod": "npm run build && node ./build/app.js",
     "start": "nodemon --exec babel-node ./src/app.js",
+    "seed": "node ./src/database/seeders/seed.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -29,7 +30,9 @@
     "express": "^4.17.1",
     "joi": "^17.3.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.10.10"
+    "mongo-seeding": "^3.4.1",
+    "mongoose": "^5.10.10",
+    "mongoose-seed": "^0.6.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.1",

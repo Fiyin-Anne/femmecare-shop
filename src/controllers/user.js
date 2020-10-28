@@ -7,7 +7,6 @@ export default class UserController {
         try {
             const { error } = registerValidation(req.body);
             if (error) {
-                console.log(error)
                 return res.status(400).json({ status: 400, message: "Validation Error", error: error.message, });
             }
             const { username, email, password } = req.body;
@@ -22,7 +21,6 @@ export default class UserController {
             const newUser = await UserServices.addUser(user);
             return res.status(201).json({ status: 201, message: `Registration successful. Hello, ${newUser.username}!`, });
         } catch (error) {
-            console.log(error)
             res.status(500).json({ status: 500, error: "Server Error" });
         }
     }
@@ -42,7 +40,6 @@ export default class UserController {
             const token = await jwtHelper.generateToken({ user });
             return res.status(200).json({ status: 200, message: `Hello ${user.username}, welcome!`, token: token});
             } catch (error) {
-                console.log(error)
                 res.status(500).json({ status: 500, error: "Server Error" });
             }
         }

@@ -9,6 +9,15 @@ export default class UserServices {
       }
     }
 
+
+    static async checkId(id) {
+      try {
+        return await User.findById( id );
+      } catch (err) {
+        throw err;
+      }
+    }
+
     static async checkEmail(email) {
         try {
           return await User.findOne({ email });

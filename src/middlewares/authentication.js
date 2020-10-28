@@ -19,32 +19,24 @@ export default class Authentication {
       }
     }
 
-//   static async verifyAdmin(req, res, next) {
-//     try {
-//       const { id } = req.decoded.user;
-//       const user = await Authentication.findAdminById(id);
-//       if (user) {
-//         return next();
-//       }
-//       return res.status(403).json({ status: 403, error: "Access denied." });
-//     } catch (error) {
-//       return res.status(500).json({ status: 500, error: "Server Error." });
-//     }
-//   }
+  static async verifyAdmin(req, res, next) {
+    try {
+      const { _id } = req.decoded.user;
+      const user = await Authentication.findAdminById(_id);
+      if (user) {
+        return next();
+      }
+      return res.status(403).json({ status: 403, error: "Access denied." });
+    } catch (error) {
+      return res.status(500).json({ status: 500, error: "Server Error." });
+    }
+  }
 
-//   static async findAdminById(id) {
-//     try {
-//       return await User.find({ _id: id, role: "Admin" })
-//       await db.Users.findOne({
-//         where: {
-//           id,
-//           role: {
-//             [Op.or]: ["Admin", "Super Admin"]
-//           }
-//         }
-//       });
-//     } catch (error) {
-//       throw error;
-//     }
-//   }
+  static async findAdminById(_id) {
+    try {
+      return await User.findOne({ _id, role: "Admin" })
+    } catch (error) {
+      throw error;
+    }
+  }
 }

@@ -11,16 +11,24 @@ export default class CategoryController {
             const newCategory = await Admin.addCategory(category);
             return res.status(201).json({ status: 201, message: `A new category has been added!`, data: newCategory});
         } catch (error) {
-            console.log(error)
             res.status(500).json({ status: 500, error: "Server Error" });
         }
     }
 
     static async getCategories(req, res) {
         try {
+            
             const categories = await CategoryServices.getCategories();
-            if(categories.length <= 0) return res.status(400).json({ status: 400, message: `No categories have been added.`, })
-            res.status(200).json({ status: 200, categories: categories, })
+            if(categories.length == 0) return res.status(400).json({ status: 400, message: `Nothing to see here.`, });
+            const { page = 1, limit = 5 } = req.query;
+            const count = await CategoryServices.countCategory();
+            const categoriesPage = await CategoryServices.getCategoriesByPage(page, limit);
+            if (categoriesPage === undefined || categoriesPage.length == 0) return res.status(400).json({ status: 400, message: `Nothing to see here.`, })
+            res.status(200).json({ 
+                status: 200, 
+                categories: categoriesPage, 
+                totalPages: Math.ceil(count / limit),
+                currentPage: page})
         } catch (error) {
             res.status(500).json({ status: 500, error: "Server Error" });
         }
@@ -28,7 +36,6 @@ export default class CategoryController {
 
     static async getCategory(req, res) {
         try {
-            console.log(req.params)
             const { id } = req.params;
             if (!id) return res.status(404).json({
                 status: 404,
@@ -38,14 +45,12 @@ export default class CategoryController {
             if(!category) return res.status(400).json({ status: 400, message: `This category doesn't exist`, })
             res.status(200).json({ status: 200, category: category, })
         } catch (error) {
-            console.log(error)
             res.status(500).json({ status: 500, error: "Server Error" });
         }
     }
 
     static async deleteCategory(req, res) {
         try {
-            console.log(req.params)
             const { id } = req.params;
             if (!id) return res.status(404).json({
                 status: 404,
@@ -78,7 +83,6 @@ export default class CategoryController {
             })
             res.status(200).json({ status: 200, message: `Successfully updated!`, category: category })
         } catch (error) {
-            console.log(error)
             res.status(500).json({ status: 500, error: "Server Error" });
         }
     }

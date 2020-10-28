@@ -1,6 +1,15 @@
 import Category from "../models/category";
 
 export default class CategoryServices {
+
+    static async countCategory() {
+      try {
+        return await Category.countDocuments();
+      } catch (err) {
+        throw err;
+      }
+    }
+
     static async checkCategory(categoryName) {
       try {
         return await Category.findOne({ name: categoryName });
@@ -12,6 +21,16 @@ export default class CategoryServices {
     static async getCategories() {
       try {
         return await Category.find({});
+      } catch (err) {
+        throw err;
+      }
+    }
+    
+    static async getCategoriesByPage(page, limit) {
+      try {
+        return await Category.find({})
+        .limit(limit * 1)
+        .skip((page - 1) * limit);
       } catch (err) {
         throw err;
       }

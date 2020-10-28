@@ -2,12 +2,23 @@ import Cart from "../models/cart";
 
 export default class CartServices {
     // 
-    static async checkCategory(categoryName) {
+    static async checkCart(userId) {
       try {
-        return await Category.findOne({ name: categoryName });
+        return await Cart.findOne({ userId });
       } catch (err) {
         throw err;
       }
+    }
+
+    static async newCart(id, item) {
+        try {
+        return await Cart.create({
+            userId: id,
+            items: [item]
+          });
+        } catch (err) {
+        throw err;
+        }
     }
 
     static async getCategories() {

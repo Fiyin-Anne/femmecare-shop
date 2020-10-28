@@ -1,4 +1,5 @@
 import Product from "../models/product";
+import User from "../models/user";
 import Category from "../models/category";
 
 export default class Admin {
@@ -9,12 +10,20 @@ export default class Admin {
         throw err;
         }
     }
-
-    static async addCategory(product) {
+  
+    static async addCategory(category) {
         try {
-        return await new Category(product).save();
+        return await new Category(category).save();
         } catch (err) {
         throw err;
         }
     }
+
+    static async checkRole(email) {
+        try {
+          return await User.findOne({ email, role: "Admin" })
+        } catch (error) {
+          throw error;
+        }
+      }
 }
