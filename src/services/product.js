@@ -2,6 +2,13 @@
 import Product from "../models/product";
 
 export default class ProductServices {
+  static async countProduct() {
+    try {
+      return await Product.countDocuments();
+    } catch (err) {
+      throw err;
+    }
+  }
     static async checkProduct(productName) {
       try {
         return await Product.findOne({ name: productName });
@@ -12,7 +19,17 @@ export default class ProductServices {
 
     static async getProducts() {
       try {
-        return await Product.find({}, ('name price'));
+        return await Product.find();
+      } catch (err) {
+        throw err;
+      }
+    }
+
+    static async getProductsByPage(page, limit) {
+      try {
+        return await Product.find({})
+        .limit(limit * 1)
+        .skip((page - 1) * limit);
       } catch (err) {
         throw err;
       }

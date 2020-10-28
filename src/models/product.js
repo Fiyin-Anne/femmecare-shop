@@ -11,9 +11,10 @@ const productSchema = new Schema({
         type: Number,
         required: true
     },
-    categoryId: {
-        type: [Number], 
-        required: true
+    category: {
+        type: [String],
+        ref: "Category",
+        default: undefined
     },
     description:  {
         type: String
