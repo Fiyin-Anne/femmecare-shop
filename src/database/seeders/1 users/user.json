@@ -1,5 +1,6 @@
-module.exports = [
+[
     {
+        "_id": {"$oid": "5f99c08d1252707c193e2760"},
         "username": "Fiyin",
         "email": "fiyin@gmail.com",
         "password": "$2a$08$2mv4aN3QQSKCvSgHoHOGZeI.IoOKKLa6MesBdnwkp24GAmqjVSMYG",
